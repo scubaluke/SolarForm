@@ -3,18 +3,65 @@ body {
   font-family: "Recursive", sans-serif;
   margin: 0;
 }
+header {
+  background-color: #0c8192;
+  padding: 8px;
+}
+ .solar-logo {
+  width: 8em;
+  margin-left: 5em;
+  margin-top: 5em;
+}
+
+header .solar-logo {
+  position: absolute;
+  background: #fff;
+  padding: 2px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+} 
+.navbar-light .navbar-nav .nav-link {
+  color: white !important;
+  font-weight: bold;
+  margin-right: 2em;
+}
+.navbar-light .navbar-nav .nav-link:hover {
+  background-color: #a58d4e;
+}
+
+
+/* ! delete this placeholder H1 css too */
+h1 {
+  display: flex;
+  justify-content: center;
+  padding-top: 3em;
+} 
 
 .hero {
   background-image: url(./img/banner.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  font-weight: 900;
-  font-size: 1.8rem;
-  height: 35vh;
+  font-weight: 600;
+  font-size: 3.8rem;
+  height: 40vh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
+}
+
+.fixed-bottom{
+  background-color: #05485e;
+  padding: 1%;
+  color: #FFFFFF66;
+  font-size: 12px;
+}
+
+@media only screen and (max-width: 990px) {
+  /* For mobile phones: */
+  header .solar-logo{
+    display: none;
+  }
 }
