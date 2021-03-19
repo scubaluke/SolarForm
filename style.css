@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Recursive:wght@400;800;900&display=swap");
+
 body {
   font-family: "Recursive", sans-serif;
   margin: 0;
@@ -7,7 +8,7 @@ header {
   background-color: #0c8192;
   padding: 8px;
 }
- .solar-logo {
+.solar-logo {
   width: 8em;
   margin-left: 5em;
   margin-top: 5em;
@@ -19,7 +20,7 @@ header .solar-logo {
   padding: 2px;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
-} 
+}
 .navbar-light .navbar-nav .nav-link {
   color: white !important;
   font-weight: bold;
@@ -27,16 +28,11 @@ header .solar-logo {
 }
 .navbar-light .navbar-nav .nav-link:hover {
   background-color: #a58d4e;
+  /* height: 100% !important; */
 }
-
-
-/* ! delete this placeholder H1 css too */
-h1 {
-  display: flex;
-  justify-content: center;
-  padding-top: 3em;
-} 
-
+.active {
+  background-color: #a58d4e;
+}
 .hero {
   background-image: url(./img/banner.png);
   background-position: center;
@@ -52,16 +48,132 @@ h1 {
   color: white;
 }
 
-.fixed-bottom{
+.form-header {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form-title {
+  margin: 30px 0 20px 0;
+  color: #05485e;
+  font-weight: 800;
+  letter-spacing: 0.1rem;
+}
+.hr::before {
+  content: "";
+  width: 100px;
+  border-bottom: 4px solid #a58d4e;
+  position: absolute;
+  transform: translateX(-50px);
+}
+
+.form-instructions {
+  margin: 17px;
+  color: #05485e;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+
+.styled-input {
+  /* text-align: center; */
+  background-color: #0c8192;
+  color: white !important;
+  font-weight: 600;
+  border: 1px solid #0c8192 !important;
+  box-shadow: 0px 0px 5px #333;
+  height: 50px;
+  border-radius: 10px;
+  min-width: 250px;
+  margin: 8px;
+}
+input::-webkit-input-placeholder {
+  color: white;
+}
+input:-moz-placeholder {
+  color: white;
+}
+.wide {
+  width: 400px;
+}
+
+.slide {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 990px;
+}
+.side-container {
+  /* border: 1px solid rebeccapurple; */
+}
+.slide-container-2 {
+  display: none;
+  max-width: 990px;
+  flex-direction: column;
+  align-items: center;
+}
+.show {
+  display: flex;
+}
+.required {
+  color: red;
+  margin: 0;
+}
+.tcpa-language {
+  margin: 10px;
+  width: 85%;
+  color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(192, 192, 192, 0.705);
+  box-shadow: 1px 1px 8px rgba(155, 155, 155, 0.808);
+}
+.but-container {
+  display: flex;
+  justify-content: flex-end;
+}
+.double-but-container {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+}
+.but-styled {
+  background-color: #a58d4e;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px #333;
+  padding: 10px 0;
+  width: 100px;
+  margin: 15px;
+  transition: 200ms ease-in;
+}
+.but-styled:hover {
+  transform: scale(1.1) translate(5px, -2px);
+  box-shadow: -2px 2px 5px rgb(27, 27, 27);
+}
+button:disabled,
+button[disabled] {
+  background-color: #a58c4eb0;
+}
+.fixed-bottom {
   background-color: #05485e;
   padding: 1%;
-  color: #FFFFFF66;
+  color: #ffffff66;
   font-size: 12px;
 }
 
 @media only screen and (max-width: 990px) {
   /* For mobile phones: */
-  header .solar-logo{
+  header .solar-logo {
     display: none;
   }
 }
