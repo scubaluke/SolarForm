@@ -5,10 +5,21 @@ document.querySelector('#AFID').value = document.referrer.split('AFID=')[1] || '
 const agreeInput = document.querySelector('#TCPA')
 agreeInput.addEventListener('click', () => document.querySelector('#tcpa_consent').value = 'Yes')
 
-// NEXT SLIDE
+// GLOBAL SELECTORS 
+const backBut = document.querySelector('.goBack')
 const nextBut = document.querySelector('.next')
+const submitBut = document.querySelector('[type=submit]')
+const phoneInput = document.querySelector('#phone_home')
+const wideInputs = document.querySelectorAll('.wide')
+const form = document.querySelector('form')
+
+// EVENT LISTENERS 
+submitBut.addEventListener('click', validateAndSubmit)
+backBut.addEventListener('click', goBack)
 nextBut.addEventListener('click', goToNext)
 
+
+// GO TO NEXT SLIDE
 function  goToNext(e) {
     e.preventDefault()
     document.querySelector('.slide-container').style.display = 'none'
@@ -16,10 +27,7 @@ function  goToNext(e) {
 
 }
 
-// go Back
-const backBut = document.querySelector('.goBack')
-backBut.addEventListener('click', goBack)
-
+// GO BACK 
 function goBack(e) {
     e.preventDefault()
     document.querySelector('.slide-container').style.display = 'block'
@@ -27,34 +35,93 @@ function goBack(e) {
 }
 
 // validate phone number
-  const phoneInput = document.querySelector('#phone_home')
-  phoneInput.addEventListener('blur', validatePhone)
-  const submitBut = document.querySelector('[type=submit]')
-  submitBut.addEventListener('click', validateAndSubmit)
-
+// todo: ADD TRY CATCH & SET PHONE NUMBER VALUE TO result.number
 async function validatePhone() {
-    const APIKey = 'pv-d09b6cd0fb52db450f338fd625a61424'
+    const APIKey = ''
     const numToFetch = phoneInput.value
 
-   const result = await fetch(`https://api.phone-validator.net/api/v2/verify?PhoneNumber=${numToFetch}&CountryCode=us&APIKey=${APIKey}`)
+   const result = await fetch(`http://apilayer.net/api/validate?access_key=${APIKey}&number=${numToFetch}
+   &country_code=us&format=1`)
     .then(res => res.json())
     .then(data  => {
         return data
     })
-    console.log(result.status);
-    if (result.status === 'VALID_CONFIRMED') {
+    // console.log(result.valid);
+    if (result.valid) {
         console.log('you may pass');
-        submitBut.disabled = false
+        phoneInput.nextElementSibling.textContent = ''
+        return true
     } else {
-       console.log( phoneInput.nextElementSibling);
        phoneInput.nextElementSibling.textContent = 'Please enter a valid phone number'
+       return false
     }
 }
 
+
+
 function validateAndSubmit(e) {
     e.preventDefault()
-   const form = document.querySelector('form')
-    if (!form.first_name.value) {
-        form.first_name.placeholder  = '* Required'
+    function showNotValid(slide, field) {
+        slide.placeholder = `* ${field} Required`
+        slide.classList.add('required-input')
+        slide.classList.remove('styled-input')
+       //  submitBut.disabled = true
+   }
+   function removeRequired(slide) {
+       slide.classList.remove('required-input')
+       slide.classList.add('styled-input')
+   }
+
+   if (!form.first_name.value) {
+        showNotValid(first_name, 'First Name')
+    } else {
+        removeRequired(first_name)
+    }
+    if (!form.last_name.value) {
+        showNotValid(last_name, 'Last Name')
+    } else {
+        removeRequired(last_name)
+    }
+    if (!form.address.value) {
+        showNotValid(address, 'Address')
+    } else {
+        removeRequired(address)
+    }
+    if (!form.city.value) {
+        showNotValid(city, 'City')
+    } else {
+        removeRequired(city)
+    }
+    if (!form.state.value) {
+        showNotValid(state, 'State')
+    } else {
+        removeRequired(state)
+    }
+    if (!form.zip.value) {
+        showNotValid(zip, 'Zip Code')
+    } else {
+        removeRequired(zip)
+    }
+    if (!form.email_address.value) {
+        showNotValid(email_address, 'Email')
+    } else {
+        removeRequired(email_address)
+    }
+    if (!form.phone_home.value) {
+        showNotValid(phone_home, 'Phone Number')
+    } else {
+        removeRequired(phone_home)
+    }
+    if (!form.TCPA.checked) {
+        document.querySelector('.tcpa-required').textContent = '* Required'
+        // submitBut.disabled = true
+    } else {
+        document.querySelector('.tcpa-required').textContent = ''
+    }
+
+
+    if ([...wideInputs].every(input => input.value) && form.TCPA.checked && validatePhone() ) {
+        console.log('will submit');
+        document.querySelector('.submit-processing').classList.add('show')
     }
 }
