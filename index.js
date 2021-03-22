@@ -35,23 +35,31 @@ function goBack(e) {
 }
 
 // validate phone number
-// todo: ADD TRY CATCH & SET PHONE NUMBER VALUE TO result.number
 async function validatePhone() {
     const APIKey = '996995fb75a21f0997b3598f6ab7793d'
     const numToFetch = phoneInput.value
-
+    console.log(numToFetch);
    const result = await fetch(`http://apilayer.net/api/validate?access_key=${APIKey}&number=${numToFetch}
    &country_code=us&format=1`)
     .then(res => res.json())
     .then(data  => {
         return data
+    }).catch(error => {
+        console.error('phone validation error: ', error)
+    return true;
     })
-    // console.log(result.valid);
-    if (result.valid) {
+    console.log('phone ran');
+    const isValid = await result.valid
+    if (isValid) {
         console.log('you may pass');
         phoneInput.nextElementSibling.textContent = ''
         return true
-    } else {
+    } 
+    // else if (!result.success) {
+    //     phoneInput.nextElementSibling.textContent = ''
+    //     return true
+    // } 
+    else {
        phoneInput.nextElementSibling.textContent = 'Please enter a valid phone number'
        return false
     }
@@ -63,7 +71,7 @@ async function validatePhone() {
     }
 
 
-function validateAndSubmit(e) {
+async function validateAndSubmit(e) {
     e.preventDefault()
     function showNotValid(slide, field) {
         slide.placeholder = `* ${field} Required`
@@ -111,10 +119,12 @@ function validateAndSubmit(e) {
     } else {
         removeRequired(email_address)
     }
+    let isPhoneValid;
     if (!form.phone_home.value) {
         showNotValid(phone_home, 'Phone Number')
     } else {
         removeRequired(phone_home)
+         isPhoneValid = await validatePhone()
     }
     if (!form.TCPA.checked) {
         document.querySelector('.tcpa-required').textContent = '* Required'
@@ -123,8 +133,7 @@ function validateAndSubmit(e) {
         document.querySelector('.tcpa-required').textContent = ''
     }
 
-
-    if ([...wideInputs].every(input => input.value) && form.TCPA.checked && validatePhone() ) {
+    if ([...wideInputs].every(input => input.value) && form.TCPA.checked &&  isPhoneValid && emailIsValid(form.email_address.value)) {
         console.log('will submit');
         document.querySelector('.submit-processing').classList.add('show')
     }
