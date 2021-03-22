@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
         crossorigin="anonymous"></script>
-
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -71,7 +71,7 @@
         <div class="slide-container">
             <div class="slide">
 
-                <select class="styled-input" id='electric_bill' name='electric_bill' >
+                <select class="styled-input" id='electric_bill' name='electric_bill' required>
                     <option value='' >Current Monthly Electric Bill</option>
                     <option value='1' >$0 - $50</option>
                     <option value='2' >$51 - $100</option>
@@ -86,9 +86,9 @@
                     <option value='11' >$800+</option>
                  </select>
 
-                <input class="styled-input" type="text" name="utility_provider" id="utility_provider" placeholder="Current Electricity Provider" >
+                <input class="styled-input" type="text" name="utility_provider" id="utility_provider" placeholder="Current Electricity Provider" required>
             
-                <select class="styled-input" name="credit_profile" id="credit_profile" aria-placeholder="Credit Status" >
+                <select class="styled-input" name="credit_profile" id="credit_profile" aria-placeholder="Credit Status" required>
                     <option value="">Credit Status</option>
                     <option value="1">Excellent</option>
                     <option value="2">Good</option>
@@ -96,7 +96,7 @@
                     <option value="4">Poor</option>
                 </select>
 
-                <select class="styled-input" id='property_type' name='property_type' >
+                <select class="styled-input" id='property_type' name='property_type' required>
                     <option value=''>Property Type</option>
                     <option value='Commercial' >Commercial</option>
                     <option value='Condo/Apartment' >Condo/Apartment</option>
@@ -107,7 +107,7 @@
                     <option value='5+ Units' >5+ Units</option>
                  </select>
                          <!-- <input type='hidden' name="property_ownership" id="property_ownership" value="YES"> -->
-                <select class="styled-input" id='property_ownership' name='property_ownership' >
+                <select class="styled-input" id='property_ownership' name='property_ownership' required>
                   <option value=''>Are you the property owner?</option>
                   <option value='YES' >Yes</option>
                   <option value='NO' >No</option>
@@ -115,7 +115,7 @@
                   
              </select>                    
 
-                 <select class="styled-input" name="roof_shading" id="roof_shading" aria-placeholder="How Much Shade?" >
+                 <select class="styled-input" name="roof_shading" id="roof_shading" aria-placeholder="How Much Shade?" required>
                     <option value="">How Much Shade?</option>
                     <option value="1">No Shade</option>
                     <option value="2">A Little Shade</option>
@@ -127,7 +127,7 @@
         <!-- class slid end -->
             </div>
         <div class="but-container">
-            <button class="but-styled next">Next</button>
+            <button class="but-styled next" id="check">Next</button>
         </div>
    <!-- container end -->
     </div>
