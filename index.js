@@ -37,7 +37,7 @@ function goBack(e) {
 // validate phone number
 // todo: ADD TRY CATCH & SET PHONE NUMBER VALUE TO result.number
 async function validatePhone() {
-    const APIKey = ''
+    const APIKey = '996995fb75a21f0997b3598f6ab7793d'
     const numToFetch = phoneInput.value
 
    const result = await fetch(`http://apilayer.net/api/validate?access_key=${APIKey}&number=${numToFetch}
@@ -57,6 +57,10 @@ async function validatePhone() {
     }
 }
 
+  // email validation
+   function emailIsValid (email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    }
 
 
 function validateAndSubmit(e) {
@@ -102,7 +106,7 @@ function validateAndSubmit(e) {
     } else {
         removeRequired(zip)
     }
-    if (!form.email_address.value) {
+    if (!emailIsValid(form.email_address.value)) {
         showNotValid(email_address, 'Email')
     } else {
         removeRequired(email_address)

@@ -311,3 +311,17 @@ button[disabled] {
     transform: rotate(360deg);
   }
 }
+
+/* PHONES  */
+@media (min-width: 120px) and (max-width: 460px) {
+  .hero {
+    text-align: center;
+  }
+  .form-header {
+    margin: 10px 15px;
+    text-align: center;
+  }
+  .wide {
+    width: 250px;
+  }
+}
