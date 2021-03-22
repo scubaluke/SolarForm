@@ -12,6 +12,8 @@ const submitBut = document.querySelector('[type=submit]')
 const phoneInput = document.querySelector('#phone_home')
 const wideInputs = document.querySelectorAll('.wide')
 const form = document.querySelector('form')
+const selectInputs = document.querySelectorAll('select')
+
 
 // EVENT LISTENERS 
 submitBut.addEventListener('click', validateAndSubmit)
@@ -24,14 +26,12 @@ nextBut.addEventListener('click', goToNext)
 // GO TO NEXT SLIDE
 function  goToNext(e) {
     e.preventDefault()
-    const hasEmpty = userInfoValidate()
-    if(e.target.id === "check" && hasEmpty){
-        alert("All Fields Required")
-        return null
-    }
-    document.querySelector('.slide-container').style.display = 'none'
-    document.querySelector('.slide-container-2').classList.add('show')
-
+  
+    if (validateSlide1()) {
+        document.querySelector('.slide-container').style.display = 'none'
+        document.querySelector('.slide-container-2').classList.add('show')
+    } 
+    return
 }
 
 // GO BACK 
@@ -43,7 +43,7 @@ function goBack(e) {
 
 // validate phone number
 async function validatePhone() {
-    const APIKey = ''
+    const APIKey = '996995fb75a21f0997b3598f6ab7793d'
     const numToFetch = phoneInput.value
     console.log(numToFetch);
    const result = await fetch(`http://apilayer.net/api/validate?access_key=${APIKey}&number=${numToFetch}
@@ -68,6 +68,7 @@ async function validatePhone() {
     // } 
     else {
        phoneInput.nextElementSibling.textContent = 'Please enter a valid phone number'
+       phoneInput.classList.add('required-input')
        return false
     }
 }
@@ -86,6 +87,10 @@ async function validateAndSubmit(e) {
        slide.classList.remove('required-input')
        slide.classList.add('styled-input')
    }
+        // email validation
+function emailIsValid (email) {
+	return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+}
 
    if (!form.first_name.value) {
         showNotValid(first_name, 'First Name')
@@ -117,7 +122,7 @@ async function validateAndSubmit(e) {
     } else {
         removeRequired(zip)
     }
-    if (!form.email_address.value) {
+    if (!emailIsValid(form.email_address.value)) {
         showNotValid(email_address, 'Email')
     } else {
         removeRequired(email_address)
@@ -137,24 +142,58 @@ async function validateAndSubmit(e) {
     }
 
     if ([...wideInputs].every(input => input.value) && form.TCPA.checked &&  isPhoneValid && emailIsValid(form.email_address.value)) {
-        console.log('will submit');
         document.querySelector('.submit-processing').classList.add('show')
+        form.submit()
     }
 }
 
-// validate first slide function
+function validateSlide1() {
+    function showNotValid(select) {
+        select.classList.add('required-input')
+        select.classList.remove('styled-input')
+   }
+   function removeRequired(select) {
+    select.classList.remove('required-input')
+    select.classList.add('styled-input')
+   }
 
-function userInfoValidate(){
-    if(
-        $("#electric_bill").val() === "" || 
-        $("#utility_provider").val() === "" || 
-        $("#credit_profile").val() === "" || 
-        $("#property_type").val() === "" || 
-        $("#property_ownership").val() === "" || 
-        $("#roof_shading").val() === ""  
-    ) {
-        return true;
-    }  else {
+    if(!electric_bill.value) {
+        showNotValid(electric_bill)
+    } else {
+        removeRequired(electric_bill)
+    }
+    if(!utility_provider.value) {
+       
+        showNotValid(utility_provider)
+    } else {
+        removeRequired(utility_provider)
+    }
+
+    if(!credit_profile.value) {
+        showNotValid(credit_profile)
+    } else {
+        removeRequired(credit_profile)
+    }
+
+    if(!income_amount.value) {
+        showNotValid(income_amount)
+    } else {
+        removeRequired(income_amount)
+    }
+    if(!employment_type.value) {
+        showNotValid(employment_type)
+    } else {
+        removeRequired(employment_type)
+    }
+    if(!roof_shading.value) {
+        showNotValid(roof_shading)
+    } else {
+        removeRequired(roof_shading)
+    }
+
+    if ([...selectInputs].every(input => input.value) && utility_provider.value) {
+        return true
+    } else {
         return false
     }
-}  
+}

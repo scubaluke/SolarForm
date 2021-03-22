@@ -15,7 +15,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
         crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -96,7 +95,7 @@
                     <option value="4">Poor</option>
                 </select>
 
-                <select class="styled-input" id='property_type' name='property_type' required>
+                <!-- <select class="styled-input" id='property_type' name='property_type' required>
                     <option value=''>Property Type</option>
                     <option value='Commercial' >Commercial</option>
                     <option value='Condo/Apartment' >Condo/Apartment</option>
@@ -106,14 +105,24 @@
                     <option value='4 Units' >4 Units</option>
                     <option value='5+ Units' >5+ Units</option>
                  </select>
-                         <!-- <input type='hidden' name="property_ownership" id="property_ownership" value="YES"> -->
+                        
                 <select class="styled-input" id='property_ownership' name='property_ownership' required>
                   <option value=''>Are you the property owner?</option>
                   <option value='YES' >Yes</option>
-                  <option value='NO' >No</option>
+                  <option value='NO' >No</option> 
+             </select>         -->            
 
-                  
-             </select>                    
+        <!-- todo: employment status & Monthly income -->
+             <select class="styled-input" id='employment_type' name='employment_type' style='width:228px;' >
+                <option value=''>Employment Type</option>
+                <option value='1' >Full-time</option>
+                <option value='2' >Part-time</option>
+                <option value='3' >Self-employed</option>
+                <option value='4' >Not Employed</option>
+                <option value='5' >Retired</option>
+             </select>
+
+             <input class="styled-input" type='text' id='income_amount' name='income_amount' placeholder="Income Amount" />
 
                  <select class="styled-input" name="roof_shading" id="roof_shading" aria-placeholder="How Much Shade?" required>
                     <option value="">How Much Shade?</option>
@@ -122,7 +131,7 @@
                     <option value="3">A Lot of Shade</option>
                     <option value="4">Mostly Shade</option>
                 </select>
-    <!-- todo: employment status & Monthly income -->
+ 
               
         <!-- class slid end -->
             </div>
