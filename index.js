@@ -19,9 +19,16 @@ backBut.addEventListener('click', goBack)
 nextBut.addEventListener('click', goToNext)
 
 
+
+
 // GO TO NEXT SLIDE
 function  goToNext(e) {
     e.preventDefault()
+    const hasEmpty = userInfoValidate()
+    if(e.target.id === "check" && hasEmpty){
+        alert("All Fields Required")
+        return null
+    }
     document.querySelector('.slide-container').style.display = 'none'
     document.querySelector('.slide-container-2').classList.add('show')
 
@@ -37,7 +44,7 @@ function goBack(e) {
 // validate phone number
 // todo: ADD TRY CATCH & SET PHONE NUMBER VALUE TO result.number
 async function validatePhone() {
-    const APIKey = '996995fb75a21f0997b3598f6ab7793d'
+    const APIKey = ''
     const numToFetch = phoneInput.value
 
    const result = await fetch(`http://apilayer.net/api/validate?access_key=${APIKey}&number=${numToFetch}
@@ -57,10 +64,6 @@ async function validatePhone() {
     }
 }
 
-  // email validation
-   function emailIsValid (email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-    }
 
 
 function validateAndSubmit(e) {
@@ -106,7 +109,7 @@ function validateAndSubmit(e) {
     } else {
         removeRequired(zip)
     }
-    if (!emailIsValid(form.email_address.value)) {
+    if (!form.email_address.value) {
         showNotValid(email_address, 'Email')
     } else {
         removeRequired(email_address)
@@ -129,3 +132,20 @@ function validateAndSubmit(e) {
         document.querySelector('.submit-processing').classList.add('show')
     }
 }
+
+// validate first slide function
+
+function userInfoValidate(){
+    if(
+        $("#electric_bill").val() === "" || 
+        $("#utility_provider").val() === "" || 
+        $("#credit_profile").val() === "" || 
+        $("#property_type").val() === "" || 
+        $("#property_ownership").val() === "" || 
+        $("#roof_shading").val() === ""  
+    ) {
+        return true;
+    }  else {
+        return false
+    }
+}  
