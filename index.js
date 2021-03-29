@@ -43,33 +43,40 @@ function goBack(e) {
 
 // validate phone number
 async function validatePhone() {
-    const APIKey = '996995fb75a21f0997b3598f6ab7793d'
-    const numToFetch = phoneInput.value
-    console.log(numToFetch);
-   const result = await fetch(`http://apilayer.net/api/validate?access_key=${APIKey}&number=${numToFetch}
-   &country_code=us&format=1`)
-    .then(res => res.json())
-    .then(data  => {
-        return data
-    }).catch(error => {
-        console.error('phone validation error: ', error)
-    return true;
-    })
-    console.log('phone ran');
-    const isValid = await result.valid
-    if (isValid) {
-        console.log('you may pass');
-        phoneInput.nextElementSibling.textContent = ''
+    // const APIKey = '996995fb75a21f0997b3598f6ab7793d'
+    try {
+        const endPoint = 'https://hidden-meadow-85444.herokuapp.com/lookup/'
+        const numToFetch = phoneInput.value
+        // console.log(numToFetch);
+       const result = await fetch(`${endPoint}?phone=${numToFetch}`)
+        .then(res => res.json())
+        .then(data  => {
+            return data
+        }).catch(error => {
+            console.error('phone validation error: ', error)
+        return true;
+        })
+        // console.log(result);
+        const isValid = await result.phoneNumber
+        if (isValid) {
+            // strip extra characters from phone number and set it
+            phoneInput.value = result.phoneNumber.substring(2)
+            console.log(phoneInput.value);
+            phoneInput.nextElementSibling.textContent = ''
+            return true
+        } 
+        // else if (!result.success) {
+        //     phoneInput.nextElementSibling.textContent = ''
+        //     return true
+        // } 
+        else {
+           phoneInput.nextElementSibling.textContent = 'Please enter a valid phone number'
+           phoneInput.classList.add('required-input')
+           return false
+        }
+    } catch (error) {
+        console.error(error);
         return true
-    } 
-    // else if (!result.success) {
-    //     phoneInput.nextElementSibling.textContent = ''
-    //     return true
-    // } 
-    else {
-       phoneInput.nextElementSibling.textContent = 'Please enter a valid phone number'
-       phoneInput.classList.add('required-input')
-       return false
     }
 }
 
@@ -143,7 +150,7 @@ function emailIsValid (email) {
 
     if ([...wideInputs].every(input => input.value) && form.TCPA.checked &&  isPhoneValid && emailIsValid(form.email_address.value)) {
         document.querySelector('.submit-processing').classList.add('show')
-        form.submit()
+        // form.submit()
     }
 }
 
