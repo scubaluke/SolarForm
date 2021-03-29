@@ -43,7 +43,6 @@ function goBack(e) {
 
 // validate phone number
 async function validatePhone() {
-    // const APIKey = '996995fb75a21f0997b3598f6ab7793d'
     try {
         const endPoint = 'https://hidden-meadow-85444.herokuapp.com/lookup/'
         const numToFetch = phoneInput.value
@@ -150,7 +149,7 @@ function emailIsValid (email) {
 
     if ([...wideInputs].every(input => input.value) && form.TCPA.checked &&  isPhoneValid && emailIsValid(form.email_address.value)) {
         document.querySelector('.submit-processing').classList.add('show')
-        // form.submit()
+        form.submit()
     }
 }
 
