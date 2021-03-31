@@ -12,7 +12,9 @@ const submitBut = document.querySelector('[type=submit]')
 const phoneInput = document.querySelector('#phone_home')
 const wideInputs = document.querySelectorAll('.wide')
 const form = document.querySelector('form')
-const selectInputs = document.querySelectorAll('select')
+const selectInputs = document.querySelectorAll('.first-slide')
+const slide1 = document.querySelector('.slide-container')
+const slide2 = document.querySelector('.slide-container-2')
 
 
 // EVENT LISTENERS 
@@ -26,7 +28,7 @@ nextBut.addEventListener('click', goToNext)
 // GO TO NEXT SLIDE
 function  goToNext(e) {
     e.preventDefault()
-  
+
     if (validateSlide1()) {
         document.querySelector('.slide-container').style.display = 'none'
         document.querySelector('.slide-container-2').classList.add('show')
@@ -64,10 +66,6 @@ async function validatePhone() {
             phoneInput.nextElementSibling.textContent = ''
             return true
         } 
-        // else if (!result.success) {
-        //     phoneInput.nextElementSibling.textContent = ''
-        //     return true
-        // } 
         else {
            phoneInput.nextElementSibling.textContent = 'Please enter a valid phone number'
            phoneInput.classList.add('required-input')
@@ -154,6 +152,8 @@ function emailIsValid (email) {
 }
 
 function validateSlide1() {
+   
+        // e.preventDefault()
     function showNotValid(select) {
         select.classList.add('required-input')
         select.classList.remove('styled-input')
@@ -196,8 +196,12 @@ function validateSlide1() {
     } else {
         removeRequired(roof_shading)
     }
-
+    
+    
     if ([...selectInputs].every(input => input.value) && utility_provider.value) {
+       
+        // slide1.style.display = 'none';
+        // slide2.style.display = 'flex';
         return true
     } else {
         return false
