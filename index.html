@@ -125,7 +125,7 @@
              <input class="styled-input first-slide" type='text' id='income_amount' name='income_amount' placeholder="Income Amount" />
 
                  <select class="styled-input first-slide" name="roof_shading" id="roof_shading" aria-placeholder="How Much Shade?" required>
-                    <option value="">How Much Shade?</option>
+                    <option value="">How Much Roof Shade?</option>
                     <option value="1">No Shade</option>
                     <option value="2">A Little Shade</option>
                     <option value="3">A Lot of Shade</option>
@@ -210,7 +210,7 @@
                
                 <input class="styled-input wide" type="email" name="email_address" id="email_address" placeholder="Email">
                 <div>
-                    <input class="styled-input wide" type="phone" name="phone_home" id="phone_home" placeholder="Phone Number"><p class="phone-required"></p>
+                    <input class="styled-input wide" type="phone" name="phone_primary" id="phone_primary" placeholder="Phone Number"><p class="phone-required"></p>
                 </div>
                
             
@@ -220,9 +220,8 @@
                 <p class="tcpa-required"></p>
                 <input type="checkbox" name="TCPA" id="TCPA">
 
-                <span >By submitting your phone number you expressly consent to having Champion Lender, The Solar Champions, The Contractor Champions or our Solar and Contractor partners contact you about your inquiry at the phone number you have provided. You understand by agreeing you will override any Do Not Call List You agree to be contacted via a live or automated pre recorded telephone call, text message, or email. You understand that your telephone company may impose charges on you for these contacts, and you are not required to enter into this agreement as a condition of purchasing property, goods, or services. You understand that you can revoke this consent at any time.</span>
+                <span >By submitting your phone number you expressly consent to having Champion Lender, The Solar Champions, The Contractor Champions or our Solar and Contractor <a class="premier-partners"href="https://thesolarchampions.com/premier-partners/">premier partners</a> or <a class="premier-partners"href="  https://thesolarchampions.com/potential-partners/">potential partners</a> contact you about your inquiry at the phone number you have provided. You understand by agreeing you will override any Do Not Call List. You agree to be contacted via a live or automated pre recorded telephone call, text message, or email. You understand that your telephone company may impose charges on you for these contacts, and you are not required to enter into this agreement as a condition of purchasing property, goods, or services. You understand that you can revoke this consent at any time.</span>
             </div>
-         
             <div class="double-but-container">
                 <button class="but-styled goBack">Go Back</button>
                 <button class="but-styled" type="submit" >Submit</button>
@@ -232,6 +231,8 @@
         <!-- end slid 2 -->
 
     <!-- hidden inputs -->
+    <input type='hidden' id='text_verified' name='text_verified' value='false' />
+
     <input type='hidden' id='AFID' name='AFID' value=''  />
     <input id="campaign_id" name="campaign_id" type="hidden" value="2"/>
     <input id="campaign_key" name="campaign_key" type="hidden" value="2"/>
